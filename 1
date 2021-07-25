@@ -1,0 +1,47 @@
+from random import randint
+
+while True:
+
+    numero = list(str(randint(000000000, 999999999)))
+
+    condicao = input('Deseja gerar um CPF? [S ou N]')
+
+    if condicao == 'S':
+        cpf_int = []
+        for i in numero:
+            cpf_int.append(int(i))
+
+        contador = 10
+        m: list[int] = []
+        for n in cpf_int:
+            y = n*contador
+            m.append(int(y))
+            contador -= 1
+
+        soma_m = sum(m)
+        digito_1 = 11 - (soma_m % 11)
+
+        if digito_1 > 9:
+            digito_1 = 0
+
+        cpf_int.append(int(digito_1))
+
+        contador = 11
+        l: list[int] = []
+        for n in cpf_int:
+            y = n*contador
+            l.append(int(y))
+            contador -= 1
+
+        soma_l = sum(l)
+        digito_2 = 11 - (soma_l % 11)
+
+        if digito_2 > 9:
+            digito_2 = 0
+
+        cpf_int.append(int(digito_2))
+
+        cpf = []
+        for i in cpf_int:
+            cpf.append(str(i))
+        print(''.join(cpf))
